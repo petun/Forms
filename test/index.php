@@ -6,29 +6,27 @@ $form = new \Petun\Forms\BaseForm('id');
 $form->fields = array(
 	'name' => 'Ваще имя',
 	'telephone' => 'Ваш телефон',
-	'email' => 'Email'
+	'email' => 'Email',
+	'test' => 'Test'
 );
 
 $form->rules = array(
-	'name' => array(
-		'required'
-	),
+	array('name', 'required'),
+	array('email', 'email'),
+	array('test', 'number'),
+);
 
-	'email' => array(
-		'required',
-		'email',
-	),
-
-	'telephone' => array(
-		'required'
-	)
+$form->actions = array(
+	array('mail', 'subject'=> 'Новое письмо с сайта', 'from' => 'admin@sitename.com'),
+	array('log', 'filename' => __DIR__ . '/log.txt'),
 );
 
 $form->setData(
 	array(
-		'name' => '',
+		'name' => '[etun',
 		'tel' => '',
-		'email' => 'asdasd@mail.ru'
+		'email' => '',
+		'test' => '123'
 	)
 );
 

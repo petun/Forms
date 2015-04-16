@@ -2,19 +2,20 @@
 
 namespace Petun\Forms;
 
-class BaseForm {
+class BaseForm
+{
 
 	private $_id;
 
 	private $_data;
 
-	private $_actions = array();
+	public $actions = array();
 
 	private $_errors = array();
 
-	public $fields;
+	public $fields  = array();
 
-	public $rules;
+	public $rules  = array();
 
 	public function __construct($id) {
 		$this->_id = $id;
@@ -25,34 +26,41 @@ class BaseForm {
 	}
 
 	private function _getAttributeValue($attribute) {
-		return array_key_exists($attribute,$this->_data) ? $this->_data[$attribute] : null;
+		return array_key_exists($attribute, $this->_data) ? $this->_data[$attribute] : null;
 	}
 
 	private function _getAttributeLabel($attribute) {
-		return array_key_exists($attribute,$this->fields) ? $this->fields[$attribute] : null;
-	}
-
-	public function addAction($action) {
-		$this->_actions[] = $action;
+		return array_key_exists($attribute, $this->fields) ? $this->fields[$attribute] : null;
 	}
 
 	public function runActions() {
+		foreach ($this->actions as $actionSet) {
+			$name = array_shift($actionSet);
+			$params = $actionSet;
+
+			/* @var $action Actions\BaseAction */
+			$action = Actions\BaseAction::createAction($name, $params);
+			$action->run();
+		}
+
 
 	}
 
 	public function validate() {
 
-		foreach ($this->rules as $attribute => $rulSets) {
-			foreach ($rulSets as $rule) {
-				/* @var $validator \Petun\Forms\Validators\BaseValidator */
-				$validator = \Petun\Forms\Validators\BaseValidator::createValidator($rule);
+		foreach ($this->rules as $ruleSet) {
 
-				if (!$validator->validateAttribute($attribute, $this->_getAttributeValue($attribute))) {
-					$this->_errors[] = sprintf($validator->getError(), $this->_getAttributeLabel($attribute)) ;
-				}
+			$attribute = array_shift($ruleSet);
+			$name = array_shift($ruleSet);
+			$params = $ruleSet;
 
-				echo 'validate '.$attribute . ' against '. $rule. ' with value: ' . $this->_getAttributeValue($attribute) . "\n";
+			/* @var $validator \Petun\Forms\Validators\BaseValidator */
+			$validator = Validators\BaseValidator::createValidator($name);
+
+			if (!$validator->validateAttribute($attribute, $this->_getAttributeValue($attribute), $params)) {
+				$this->_errors[] = sprintf($validator->getError(), $this->_getAttributeLabel($attribute));
 			}
+
 		}
 		return count($this->validationErrors()) == 0;
 	}
