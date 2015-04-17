@@ -25,6 +25,16 @@ class BaseForm
 		$this->_data = $data;
 	}
 
+	public function fieldValues() {
+		$r = array();
+		foreach ($this->fields as $alias => $label) {
+			if (array_key_exists($alias, $this->_data)) {
+				$r[$label] = $this->_data[$alias];
+			}
+		}
+		return $r;
+	}
+
 	private function _getAttributeValue($attribute) {
 		return array_key_exists($attribute, $this->_data) ? $this->_data[$attribute] : null;
 	}
@@ -39,11 +49,9 @@ class BaseForm
 			$params = $actionSet;
 
 			/* @var $action Actions\BaseAction */
-			$action = Actions\BaseAction::createAction($name, $params);
+			$action = Actions\BaseAction::createAction($this, $name, $params);
 			$action->run();
 		}
-
-
 	}
 
 	public function validate() {

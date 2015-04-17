@@ -7,9 +7,9 @@ abstract class BaseAction {
 
 	abstract function run();
 
-	public static function createAction($name, $params = array()) {
+	public static function createAction(\Petun\Forms\BaseForm $form, $name, $params = array()) {
 		if (class_exists($className = "\\Petun\\Forms\\Actions\\".ucfirst($name)."Action")) {
-			$classInstance =  new $className;
+			$classInstance =  new $className($form);
 			foreach ($params as $name => $value) {
 				if (property_exists($classInstance, $name)) {
 					$classInstance->$name = $value;

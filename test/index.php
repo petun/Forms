@@ -17,7 +17,10 @@ $form->rules = array(
 );
 
 $form->actions = array(
-	array('mail', 'subject'=> 'Новое письмо с сайта', 'from' => 'admin@sitename.com'),
+	array('mail', 'subject'=> 'Новое письмо с сайта',
+		'from' => 'admin@sitename.com',
+		'fromName' => 'Администратор',
+		'to' => 'petun@Air-Petr.Dlink'),
 	array('log', 'filename' => __DIR__ . '/log.txt'),
 );
 
