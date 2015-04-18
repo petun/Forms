@@ -6,8 +6,9 @@ Package for simple forms handle in any CMS or Frameworks.
 ```sh
 git clone https://github.com/petun/Forms.git
 cd Forms
-cp example/base_config.php config.php
-cp example/handler.php handler.php
+cp test/base_config.php config.php
+cp test/handler.php .
+php ~/composer.phar update
 ```
 
 ### Front End
@@ -31,6 +32,12 @@ $(function(){
 });
 ```
 
+Add formId to forms
+```html
+<form class="petun-form" enctype="multipart/form-data" method="post">
+    <input type="hidden" name="formId" value="feedbackForm" />
+                ...
+```
 
 ### Backend
 Config Example Configuration
