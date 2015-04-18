@@ -9,6 +9,8 @@ class BaseForm
 
 	private $_data;
 
+	private $_actionParams = array();
+
 	public $actions = array();
 
 	private $_errors = array();
@@ -22,7 +24,16 @@ class BaseForm
 	}
 
 	public function setData($data) {
+		if (array_key_exists('action', $data)) {
+			$this->_actionParams = $data['action'];
+			unset($data['action']);
+		}
+		unset($data['formId']);
 		$this->_data = $data;
+	}
+
+	public function getId() {
+		return $this->_id;
 	}
 
 	public function fieldValues() {
@@ -46,7 +57,12 @@ class BaseForm
 	public function runActions() {
 		foreach ($this->actions as $actionSet) {
 			$name = array_shift($actionSet);
-			$params = $actionSet;
+
+			$params = array();
+			if (array_key_exists($name, $this->_actionParams)) {
+				$params += $this->_actionParams[$name];
+			}
+			$params += $actionSet;
 
 			/* @var $action Actions\BaseAction */
 			$action = Actions\BaseAction::createAction($this, $name, $params);

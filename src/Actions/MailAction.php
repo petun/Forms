@@ -12,6 +12,8 @@ class MailAction extends BaseAction {
 
 	public $to;
 
+	public $processFiles = true;
+
 	private $_form;
 
 
@@ -48,6 +50,14 @@ class MailAction extends BaseAction {
 
 
 		$mail->msgHTML($this->_getBody());
+
+		if ($this->processFiles && !empty($_FILES)) {
+			foreach ($_FILES as $file) {
+				if ($file['error'] == UPLOAD_ERR_OK) {
+					$mail->addAttachment($file['tmp_name'], $file['name']);
+				}
+			}
+		}
 
 
 		$mail->Body = '<h1>Test русский текст</h1>';

@@ -1,0 +1,68 @@
+<html>
+<head>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.petun-forms.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4">
+            <h2>Form Example</h2>
+
+            <form class="petun-form" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="formId" value="feedbackForm" />
+                <div class="form-group">
+                    <label for="nameId">Ваше имя</label>
+                    <input type="text" name="name" class="form-control" id="nameId" >
+                </div>
+                <div class="form-group">
+                    <label for="telId">Телефон</label>
+                    <input type="text" name="telephone" class="form-control" id="telId" >
+                </div>
+                <div class="form-group">
+                    <label for="emailId">Email</label>
+                    <input type="text" name="email" class="form-control" id="emailId" >
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">File input</label>
+                    <input type="file" id="exampleInputFile" name="upload1">
+
+                    <p class="help-block">Example block-level help text here.</p>
+                </div>
+                <div class="form-group">
+                    <label for="select">Выпадающий список</label>
+                    <select class="form-control" id="select" name="select-box">
+                        <option>Select 1</option>
+                        <option>Select 2</option>
+                        <option>Select 3</option>
+                        <option>Select 4</option>
+                        <option>Select 5</option>
+                    </select>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="check-test" value="check value" /> Check me out
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+
+                <div>
+                    <h3>Form Result</h3>
+                    <div class="formResultTestDiv">
+
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

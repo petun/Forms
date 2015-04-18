@@ -14,7 +14,8 @@ abstract class BaseAction {
 				if (property_exists($classInstance, $name)) {
 					$classInstance->$name = $value;
 				} else {
-					throw new \Exception("Property '".$name . "' not found in class ".$className);
+					// убрал исключение, т.к. хз как форму могут подделать на продакшене.
+					//throw new \Exception("Property '".$name . "' not found in class ".$className);
 				}
 
 			}
