@@ -13,13 +13,15 @@ $.fn.ptmForm = function (options) {
         'handler': 'handler.php'
     }, options);
 
-    console.log(settings);
+    //console.log(settings);
 
     return this.each(function () {
 
         var resultDiv = $(settings.renderTo);
 
         $(this).on('submit', function(e){
+
+            var form = this;
 
             e.preventDefault();
 
@@ -43,6 +45,7 @@ $.fn.ptmForm = function (options) {
                     resultDiv.html("<p>" + r.message + "</p>");
                     if (r.r) {
                         resultDiv.addClass(settings.successClass);
+                        form.reset();
                     } else {
                         resultDiv.addClass(settings.errorClass);
                         if (r.errors) {
