@@ -2,7 +2,7 @@
 
 namespace Petun\Forms\Validators;
 
-class EmailValidator extends  \Petun\Forms\Validators\BaseValidator {
+class EmailValidator extends  BaseValidator {
 
 	/**
 	 * @var string the regular expression used to validate the attribute value.

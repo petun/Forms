@@ -1,8 +1,8 @@
 <html>
 <head>
-    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="js/jquery.petun-forms.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="../frontend/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../frontend/js/jquery.petun-forms.js"></script>
+    <script type="text/javascript" src="../frontend/js/script.js"></script>
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
 </head>
@@ -45,7 +45,13 @@
                 </div>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="check-test" value="check value" /> Check me out
+                        <input type="checkbox" name="check-test[]" value="check value 1" /> Check me out 1
+                    </label>
+                    <label>
+                        <input type="checkbox" name="check-test[]" value="check value 2" /> Check me out 2
+                    </label>
+                    <label>
+                        <input type="checkbox" name="check-test[]" value="check value 3" /> Check me out 3
                     </label>
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>

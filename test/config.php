@@ -1,6 +1,7 @@
 <?php
 
-$mailTo = 'petun911@gmail.com';
+//$mailTo = 'petun911@gmail.com';
+$mailTo = 'petun@Air-Petr.Dlink';
 $siteName = 'example.com';
 
 $config = array(

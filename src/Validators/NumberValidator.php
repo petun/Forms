@@ -2,7 +2,7 @@
 
 namespace Petun\Forms\Validators;
 
-class NumberValidator extends  \Petun\Forms\Validators\BaseValidator {
+class NumberValidator extends  BaseValidator {
 
 	public $integerPattern='/^\s*[+-]?\d+\s*$/';
 

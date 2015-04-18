@@ -2,7 +2,7 @@
 
 namespace Petun\Forms\Validators;
 
-class RequiredValidator extends  \Petun\Forms\Validators\BaseValidator {
+class RequiredValidator extends  BaseValidator {
 
 	public function validateAttribute($attribute, $value, $params = array()) {
 		if (empty($value)) {

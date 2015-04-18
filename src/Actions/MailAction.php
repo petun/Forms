@@ -2,7 +2,8 @@
 
 namespace Petun\Forms\Actions;
 
-class MailAction extends BaseAction {
+class MailAction extends BaseAction
+{
 
 	public $subject;
 
@@ -24,6 +25,7 @@ class MailAction extends BaseAction {
 	private function _getBody() {
 		$html = "<h2>Писмо с сайта</h2>\n\n<ul>";
 		foreach ($this->_form->fieldValues() as $label => $value) {
+			$value = is_array($value) ? implode(', ', $value) : $value;
 			$html .= sprintf("<li><strong>%s</strong>: %s</li>\n", $label, $value ? $value : '-');
 
 		}
