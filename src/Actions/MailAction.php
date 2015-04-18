@@ -36,6 +36,8 @@ class MailAction extends BaseAction {
 		//Create a new PHPMailer instance
 		$mail = new \PHPMailer;
 
+		$mail->CharSet = 'utf-8';
+
 		// Set PHPMailer to use the sendmail transport
 		$mail->isSendmail();
 
@@ -58,9 +60,6 @@ class MailAction extends BaseAction {
 				}
 			}
 		}
-
-
-		$mail->Body = '<h1>Test русский текст</h1>';
 
 		if (!$mail->send()) {
 			return false;
