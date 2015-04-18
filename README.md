@@ -2,6 +2,14 @@
 Package for simple forms handle in any CMS or Frameworks.
 
 ## Installation
+
+```sh
+git clone https://github.com/petun/Forms.git
+cd Forms
+cp example/base_config.php config.php
+cp example/handler.php handler.php
+```
+
 ### Front End
 ```javascript
 <script type="text/javascript" src="assets/template/Forms/frontend/js/jquery-1.11.2.min.js"></script>
@@ -25,13 +33,6 @@ $(function(){
 
 
 ### Backend
-```bash
-git clone https://github.com/petun/Forms.git
-cd Forms
-cp example/base_config.php config.php
-cp example/handler.php handler.php
-```
-
 Config Example Configuration
 ```php
 $config = array(
