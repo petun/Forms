@@ -10,7 +10,7 @@
 			<h2>Form Example</h2>
 
     <form method="post" enctype="multipart/form-data">
-	    <input type="hidden" name="formId" value="feedbackForm" />
+	    <input type="hidden" name="formId" value="feedbackFormSimple" />
 	    <div class="form-group">
 		    <label for="nameId">Ваше имя</label>
 		    <input type="text" name="name" class="form-control" id="nameId" >
@@ -30,7 +30,6 @@
 		    <p class="help-block">Example block-level help text here.</p>
 	    </div>
 
-        <input type="hidden" name="formId" value="id" />
         <input type="hidden" name="action[mail][to]" value="petun911@gmail.com" />
 	    <input type="hidden" name="action[mail][subject]" value="Mail Subject" />
 
@@ -44,41 +43,11 @@
 <?php
 
 require_once("../vendor/autoload.php");
+include("config.php");
 
-$form = new \Petun\Forms\BaseForm('id');
-$form->fields = array(
-	'name' => 'Ваще имя',
-	'telephone' => 'Ваш телефон',
-	'email' => 'Email',
-);
-$form->rules = array(
-	array('name', 'required'),
-	array('email', 'email'),
-	array('telephone', 'number'),
-);
-
-$form->actions = array(
-	array('mail', 'subject'=> 'Новое письмо с сайта',
-		'from' => 'admin@sitename.com',
-		'fromName' => 'Администратор',
-		'to' => 'petun@Air-Petr.Dlink'),
-	array('log', 'filename' => __DIR__ . '/log.txt'),
-);
-
-
-
-if (!empty($_POST)) {
-	$router = new \Petun\Forms\Router($_POST);
-	$router->addForm($form);
-
-	if ($router->isRouteExists()) {
-		if ($router->processForm()) {
-			echo "Данные успешно отправлены";
-		} else {
-			var_dump($router->getRoutedForm()->validationErrors());
-		}
-	}
-}
+use Petun\Forms;
+$app = new Forms\Application($config);
+$app->handleRequest();
 
 ?>
 

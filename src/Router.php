@@ -8,12 +8,15 @@ class Router {
 
 	private $_requestData;
 
-	private $_requestFormIdParamName = 'formId'; //todo подумать над реализацией.. еще этот параметр знает BaseForm
+	const  REQUEST_KEY = 'formId';
 
 	public function __construct($requestData =  null) {
 		$this->_requestData = $requestData ? $requestData : $_REQUEST;
 	}
 
+	/**
+	 * @param BaseForm $form
+	 */
 	public function addForm(\Petun\Forms\BaseForm $form) {
 		$this->_formCollection[] = $form;
 	}
@@ -32,27 +35,17 @@ class Router {
 	 * @return bool|BaseForm
 	 */
 	public function getRoutedForm() {
-		foreach ($this->_formCollection as $form) {
-			/* @var $form \Petun\Forms\BaseForm */
-			if ($form->getId() == $this->_requestData[$this->_requestFormIdParamName]) {
-				return $form;
+		if (array_key_exists(self::REQUEST_KEY, $this->_requestData)) {
+			foreach ($this->_formCollection as $form) {
+				/* @var $form \Petun\Forms\BaseForm */
+				if ($form->getId() == $this->_requestData[self::REQUEST_KEY]) {
+					return $form;
+				}
 			}
 		}
+
 		return false;
 	}
 
-	/**
-	 * Находит нужную форму и выполняет ее
-	 * @return bool
-	 */
-	public function processForm() {
-		if ($form = $this->getRoutedForm()) {
-			$form->setData($this->_requestData);
-			if ($form->validate()) {
-				$form->runActions();
-				return true;
-			}
-		}
-		return false;
-	}
+
 }
