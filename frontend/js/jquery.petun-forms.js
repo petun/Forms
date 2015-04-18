@@ -17,7 +17,7 @@ $.fn.ptmForm = function (options) {
 
     return this.each(function () {
 
-        var resultDiv = $(settings.renderTo);
+        var resultDiv = $(settings.renderTo, this);
 
         $(this).on('submit', function(e){
 
