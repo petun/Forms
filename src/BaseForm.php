@@ -93,11 +93,18 @@ class BaseForm
 		return $this->_errors;
 	}
 
-	public static function createFromArray($id, $params) {
+	public function validationErrorFields() {
+		//todo implement method
+		return array();
+	}
+
+
+
+	public static function createFromArray($id, $params = array()) {
 		$result = new BaseForm($id);
 
 		foreach (array('fields', 'rules', 'actions') as $i) {
-			if (array_key_exists($i, $params)) {
+			if (!empty($params) &&  array_key_exists($i, $params)) {
 				$result->{$i} = $params[$i];
 			}
 		}

@@ -16,12 +16,15 @@ class Application
 		$this->_request = $request ? $request : $_POST;
 
 		if (!array_key_exists(self::REQUEST_KEY, $this->_request)) {
-			throw new \Exception('failed to process request');
+			$this->_statusError('form filed ('.self::REQUEST_KEY.') not found in request');
+			//throw new \Exception('failed to process request');
 		}
 
 		//var_dump($this->_request);
 		if (!array_key_exists($this->_request[self::REQUEST_KEY], $config)) {
-			throw new \Exception('form with id ' . $this->_request[self::REQUEST_KEY] . ' not found in config');
+			$this->_statusError('form with id ('.$this->_request[self::REQUEST_KEY].') not found in configuration');
+			return;
+			//throw new \Exception('form with id ' . $this->_request[self::REQUEST_KEY] . ' not found in config');
 		}
 
 		$this->_form = BaseForm::createFromArray(
@@ -44,19 +47,26 @@ class Application
 		return false;
 	}
 
+	private function _statusError($message) {
+		$result = array(
+			'r' => false,
+			'message' => $message,
+			'errors' => $this->_form ? $this->_form->validationErrors() : null,
+			'field' => $this->_form ? $this->_form->validationErrorFields() : null
+		);
+
+		echo json_encode($result);
+		exit;
+	}
+
 	public function handleRequest() {
 		if ($this->_processForm()) {
 			echo json_encode(
 				array('r' => true, 'message' => 'Данные успешно отправлены.')
 			);
-
 		} else {
-			echo json_encode(
-				array(
-					'r' => false,
-					'message' => 'Ошибка при заполнении формы. Проверьте правильность заполнения всех обязательных полей',
-					'errors' => $this->_form->validationErrors()
-				)
+			$this->_statusError(
+				'Ошибка при заполнении формы. Проверьте правильность заполнения всех обязательных полей'
 			);
 		}
 	}
