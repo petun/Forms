@@ -46,6 +46,13 @@ class BaseForm
 		return $r;
 	}
 
+	public function fieldValue($field) {
+		if (array_key_exists($field, $this->_data)) {
+			return $this->_data[$field];
+		}
+		return;
+	}
+
 	private function _getAttributeValue($attribute) {
 		return array_key_exists($attribute, $this->_data) ? $this->_data[$attribute] : null;
 	}

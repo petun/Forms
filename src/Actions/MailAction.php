@@ -15,8 +15,6 @@ class MailAction extends BaseAction
 
 	public $processFiles = true;
 
-	private $_form;
-
 
 	public function __construct(\Petun\Forms\BaseForm $form) {
 		$this->_form = $form;
