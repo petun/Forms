@@ -79,9 +79,9 @@ class BaseForm
 			$params = $ruleSet;
 
 			/* @var $validator \Petun\Forms\Validators\BaseValidator */
-			$validator = Validators\BaseValidator::createValidator($name);
+			$validator = Validators\BaseValidator::createValidator($name, $params);
 
-			if (!$validator->validateAttribute($attribute, $this->_getAttributeValue($attribute), $params)) {
+			if (!$validator->validateAttribute($attribute, $this->_getAttributeValue($attribute))) {
 				$this->_errors[] = sprintf($validator->getError(), $this->_getAttributeLabel($attribute));
 			}
 
