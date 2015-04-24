@@ -49,11 +49,12 @@ $.fn.ptmForm = function (options) {
                     } else {
                         resultDiv.addClass(settings.errorClass);
                         if (r.errors) {
-                            resultDiv.html(resultDiv.html() + "<ul>");
+                            var html = resultDiv.html() + '<ul>';
                             for (i in r.errors) {
-                                resultDiv.html(resultDiv.html() + "<li>" + r.errors[i] + "</li>");
+                                html += "<li>" + r.errors[i] + "</li>";
                             }
-                            resultDiv.html(resultDiv.html() + "</ul>");
+                            html += '</ul>';
+                            resultDiv.html(html);
                         }
                     }
                 }
