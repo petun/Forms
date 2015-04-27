@@ -30,7 +30,6 @@ $config = array(
 			),
 			array(
 				'redirect',
-				'to' => 'success.html',
 			),
 			array(
 				'modxResource',
