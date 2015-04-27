@@ -53,10 +53,22 @@ class BaseForm
 		return;
 	}
 
+	/**
+	 * Значение $_POST[attribute]
+	 * @param $attribute
+	 *
+	 * @return null
+	 */
 	private function _getAttributeValue($attribute) {
 		return array_key_exists($attribute, $this->_data) ? $this->_data[$attribute] : null;
 	}
 
+	/**
+	 * Названеи поля $_POST[attribute]
+	 * @param $attribute
+	 *
+	 * @return null
+	 */
 	private function _getAttributeLabel($attribute) {
 		return array_key_exists($attribute, $this->fields) ? $this->fields[$attribute] : null;
 	}
@@ -77,6 +89,7 @@ class BaseForm
 		}
 	}
 
+
 	public function validate() {
 
 		foreach ($this->rules as $ruleSet) {
@@ -96,6 +109,10 @@ class BaseForm
 		return count($this->validationErrors()) == 0;
 	}
 
+	/**
+	 * Возвращает все ошибки валидации
+	 * @return array
+	 */
 	public function validationErrors() {
 		return $this->_errors;
 	}
@@ -106,7 +123,39 @@ class BaseForm
 	}
 
 
+	// нужно для того, что бы после выполнения action какие то нужные данные попадали на js файл
+	private $_actionResult = array();
 
+	/**
+	 * Добавляет переменные от екшена. Вызывается из екшенов
+	 * @param $name
+	 * @param $value
+	 */
+	public function addActionResult($name, $value) {
+		$this->_actionResult[$name] = $value;
+	}
+
+	/**
+	 * Забирает все переменные от екшенов, и передает их вместе с json на скрипт js
+	 * @param null $name
+	 *
+	 * @return array
+	 */
+	public function getActionResults($name = null) {
+		if ($name) {
+
+		}
+		return $this->_actionResult;
+	}
+
+
+	/**
+	 * Формирует объект класса из массива
+	 * @param       $id
+	 * @param array $params
+	 *
+	 * @return BaseForm
+	 */
 	public static function createFromArray($id, $params = array()) {
 		$result = new BaseForm($id);
 

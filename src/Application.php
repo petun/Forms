@@ -17,6 +17,7 @@ class Application
 
 		if (!array_key_exists(self::REQUEST_KEY, $this->_request)) {
 			$this->_statusError('form filed ('.self::REQUEST_KEY.') not found in request');
+			return;
 			//throw new \Exception('failed to process request');
 		}
 
@@ -61,9 +62,12 @@ class Application
 
 	public function handleRequest() {
 		if ($this->_processForm()) {
-			echo json_encode(
-				array('r' => true, 'message' => 'Данные успешно отправлены.')
-			);
+
+			$result = array('r' => true, 'message' => 'Данные успешно отправлены.');
+			// добавляем к результату переменные от экшенов
+			$result = array_merge($result, $this->_form->getActionResults());
+
+			echo json_encode($result);
 		} else {
 			$this->_statusError(
 				'Ошибка при заполнении формы. Проверьте правильность заполнения всех обязательных полей'

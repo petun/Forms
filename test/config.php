@@ -29,6 +29,10 @@ $config = array(
 				'to' => $mailTo
 			),
 			array(
+				'redirect',
+				'to' => 'success.html',
+			),
+			array(
 				'modxResource',
 				'coreCmsPath' => '/Users/petun/Sites/modx/core/',
 				'resource' => array(

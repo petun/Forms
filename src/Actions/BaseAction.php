@@ -2,10 +2,12 @@
 
 namespace Petun\Forms\Actions;
 
+use Petun\Forms\BaseForm;
+
 abstract class BaseAction {
 
 	protected $_form;
-	public function __construct($form) {
+	public function __construct(BaseForm $form) {
 		$this->_form = $form;
 	}
 

@@ -46,6 +46,11 @@ $.fn.ptmForm = function (options) {
                     if (r.r) {
                         resultDiv.addClass(settings.successClass);
                         form.reset();
+
+                        if (r.redirect) {
+                            window.location.replace(r.redirect);
+                        }
+
                     } else {
                         resultDiv.addClass(settings.errorClass);
                         if (r.errors) {
