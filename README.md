@@ -26,7 +26,10 @@ $(function(){
             'successClass': 'form-result__success',
             'errorClass': 'form-result__error',
             'loadingClass': 'form-result__loading',
-            'handler': 'assets/template/Forms/handler.php'
+            'handler': 'assets/template/Forms/handler.php',
+            'onSuccess': function(form) {
+                            window.setTimeout(function(){$('#callbackForm').modal('toggle')} , 2000);
+                        }
         }
     );
 });
@@ -67,3 +70,15 @@ $config = array(
 	),
 );
 ```
+
+
+
+## Callback Form
+HTML on [example modal] page
+Script you can get from [example script]
+
+
+
+[example modal]:https://github.com/petun/Forms/blob/master/test/example_modal.html
+
+[example script]:https://github.com/petun/Forms/blob/master/frontend/js/script.js
