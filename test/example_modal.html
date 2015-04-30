@@ -1,0 +1,70 @@
+<html>
+<head>
+    <script type="text/javascript" src="../frontend/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../frontend/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../frontend/js/jquery.petun-forms.js"></script>
+    <script type="text/javascript" src="../frontend/js/script.js"></script>
+
+    <link rel="stylesheet" href="../frontend/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../frontend/css/petun-forms.css"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4">
+            <h2>Form Example</h2>
+            <p><a href="#" data-toggle="modal" data-target="#callbackForm">Обратный звонок</a> </p>
+
+            <div class="modal fade" id="callbackForm">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form class="petun-form" enctype="multipart/form-data" method="post">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Заказать обратный звонок</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Закажите обратный звонок, и мы вам перезвоним в ближайщее время!</p>
+
+                                <input type="hidden" name="formId" value="callbackForm" />
+
+                                <input type="hidden" name="action[redirect][to]" value="test" />
+
+                                <div class="form-group">
+                                    <label for="nameId">Ваше имя <span>*</span></label>
+                                    <input type="text" name="name" class="form-control" id="nameId" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="telId">Телефон <span>*</span></label>
+                                    <input type="text" name="telephone" class="form-control" id="telId" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Комментарий / вопрос <span>*</span></label>
+                                    <textarea name="comment" rows="3" id="" class="form-control"></textarea>
+                                </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class='form-result'>
+
+                            </div>
+                            <input type="submit" value="Заказать звонок" class="btn btn-primary" />
+                        </div>
+                        </form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

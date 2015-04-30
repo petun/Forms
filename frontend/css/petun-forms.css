@@ -1,0 +1,16 @@
+.modal .modal-footer .form-result {
+  float: left;
+  width: 410px;
+  text-align: left; }
+  .modal .modal-footer .form-result.form-result__loading {
+    background: url("../img/loader.gif") no-repeat left center;
+    min-width: 32px;
+    min-height: 32px; }
+  .modal .modal-footer .form-result.form-result__success {
+    font-size: 14px;
+    color: #197919;
+    line-height: 30px;
+    font-weight: bold; }
+  .modal .modal-footer .form-result.form-result__error {
+    font-size: 11px;
+    color: #ab2929; }

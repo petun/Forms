@@ -6,11 +6,12 @@ $.fn.ptmForm = function (options) {
     }
 
     var settings = $.extend({
-        'renderTo': '.formResult',
-        'successClass': 'text-success',
-        'errorClass': 'text-danger',
-        'loadingClass': 'text-info',
-        'handler': 'handler.php'
+        'renderTo': '.form-result',
+        'successClass': 'form-result__success',
+        'errorClass': 'form-result__error',
+        'loadingClass': 'form-result__loading',
+        'handler': 'handler.php',
+        'onSuccess' : function(form){}
     }, options);
 
     //console.log(settings);
@@ -46,6 +47,8 @@ $.fn.ptmForm = function (options) {
                     if (r.r) {
                         resultDiv.addClass(settings.successClass);
                         form.reset();
+
+                        settings.onSuccess(form);
 
                         if (r.redirect) {
                             window.location.replace(r.redirect);

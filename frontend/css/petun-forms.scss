@@ -1,0 +1,27 @@
+.modal {
+  .modal-footer {
+    .form-result {
+      float: left;
+      width: 410px;
+      text-align: left;
+
+      &.form-result__loading {
+        background: url("../img/loader.gif") no-repeat left center;
+        min-width: 32px;
+        min-height: 32px;
+      }
+
+      &.form-result__success {
+        font-size: 14px;
+        color: rgb(25, 121, 25);
+        line-height: 30px;
+        font-weight: bold;
+      }
+
+      &.form-result__error {
+        font-size: 11px;
+        color: rgb(171, 41, 41);
+      }
+    }
+  }
+}

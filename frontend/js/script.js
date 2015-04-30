@@ -3,10 +3,10 @@ $(function(){
 
     $('.petun-form').ptmForm(
         {
-            'renderTo': '.formResultTestDiv'
-            //'successClass': 'success',
-            //'errorClass': 'error',
-            //'handler': 'handler.php'
+            'renderTo': '.form-result',
+            'onSuccess': function(form) {
+                window.setTimeout(function(){$('#callbackForm').modal('toggle')} , 2000);
+            }
         }
     );
 

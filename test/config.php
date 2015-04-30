@@ -50,6 +50,27 @@ $config = array(
 		)
 	),
 
+	'callbackForm' => array(
+		'fields' => array(
+			'name' => 'Ваше имя',
+			'telephone' => 'Ваш телефон',
+			'comment' => 'Комментарий / вопрос',
+		),
+		'rules' => array(
+			array('name', 'required'),
+			array('telephone', 'regex', 'rule' => '/^[\d\s\+\-\(\)]+$/', 'errorMessage'=> 'Введите корректный номер телефона' ),
+			array('comment', 'required'),
+		),
+		'actions' => array(
+			array(
+				'mail',
+				'subject' => 'Новое письмо с сайта',
+				'from' => 'no-reply@' . $siteName,
+				'fromName' => 'Администратор',
+			),
+		)
+	),
+
 	'feedbackFormSimple' => array(
 		'fields' => array(
 			'name' => 'Ваще имя',
