@@ -21,7 +21,7 @@ class MailAction extends BaseAction
 	}
 
 	private function _getBody() {
-		$html = "<h2>Писмо с сайта</h2>\n\n<ul>";
+		$html = "<h2>Письмо с сайта</h2>\n\n<ul>";
 		foreach ($this->_form->fieldValues() as $label => $value) {
 			$value = is_array($value) ? implode(', ', $value) : $value;
 			$html .= sprintf("<li><strong>%s</strong>: %s</li>\n", $label, $value ? $value : '-');
