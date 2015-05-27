@@ -63,7 +63,7 @@ class Application
 	public function handleRequest() {
 		if ($this->_processForm()) {
 
-			$result = array('r' => true, 'message' => 'Данные успешно отправлены.');
+			$result = array('r' => true, 'message' => $this->_form->successMessage);
 			// добавляем к результату переменные от экшенов
 			$result = array_merge($result, $this->_form->getActionResults());
 

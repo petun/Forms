@@ -6,6 +6,7 @@ $siteName = 'example.com';
 
 $config = array(
 	'feedbackForm' => array(
+		'successMessage' => 'ОК',
 		'fields' => array(
 			'name' => 'Ваше имя',
 			'telephone' => 'Ваш телефон',
@@ -28,9 +29,9 @@ $config = array(
 				'fromName' => 'Администратор',
 				'to' => $mailTo
 			),
-			array(
+			/*array(
 				'redirect',
-			),
+			),*/
 			array(
 				'modxResource',
 				'coreCmsPath' => '/Users/petun/Sites/modx/core/',

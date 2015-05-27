@@ -19,6 +19,8 @@ class BaseForm
 
 	public $rules  = array();
 
+	public $successMessage = 'Данные успешно отправлены.';
+
 	public function __construct($id) {
 		$this->_id = $id;
 	}
@@ -159,7 +161,7 @@ class BaseForm
 	public static function createFromArray($id, $params = array()) {
 		$result = new BaseForm($id);
 
-		foreach (array('fields', 'rules', 'actions') as $i) {
+		foreach (array('fields', 'rules', 'actions', 'successMessage') as $i) {
 			if (!empty($params) &&  array_key_exists($i, $params)) {
 				$result->{$i} = $params[$i];
 			}
