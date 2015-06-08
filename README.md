@@ -82,3 +82,27 @@ Script you can get from [example script]
 [example modal]:https://github.com/petun/Forms/blob/master/test/example_modal.html
 
 [example script]:https://github.com/petun/Forms/blob/master/frontend/js/script.js
+
+CSS Sample (SASS)
+```css
+.form-result {
+  margin: 0 0 10px;
+  ul {
+    li {
+      list-style: none;
+    }
+  }
+
+  &.form-result__error {
+    p {
+      color: #ff2f25;
+    }
+  }
+
+  &.form-result__success {
+    p {
+      color: #1c801a;
+    }
+  }
+}
+```
