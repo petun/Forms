@@ -71,6 +71,39 @@ $config = array(
 );
 ```
 
+## Available Actions
+```php
+array(
+	array(
+		'mail', 'subject' => 'Новое письмо с сайта',
+		'from' => 'no-reply@' . $siteName,
+		'fromName' => 'Администратор',
+		'to' => $mailTo
+	),
+	array(
+		'redirect', 'to' => '',
+	),
+	array(
+	    'log', 'filename' => '/tmp/log.txt',
+	),
+	array(
+		'modxResource',
+		'coreCmsPath' => '/Users/petun/Sites/modx/core/',
+		'resource' => array(
+			'pagetitle' => array('eval' => '$this->_form->fieldValue("name")'),
+			'parent' => array('value' => '0'),
+			'template' => array('value' => '1'),
+			'published' => array('value' => '1'),
+			'description' => array('value' => 'sample description'),
+			'introtext' => array('eval' => '$this->_form->fieldValue("telephone") . $this->_form->fieldValue("email")'),
+			'tv' => array(
+				'date' => array('value' => '2013-01-01 12:12'),
+				'typeId' => array('value' => '3')
+			)
+		)
+	)
+)
+```
 
 
 ## Callback Form
