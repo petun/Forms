@@ -39,6 +39,10 @@ Add formId to forms
 ```html
 <form class="petun-form" enctype="multipart/form-data" method="post">
     <input type="hidden" name="formId" value="feedbackForm" />
+    <!-- action params, can white here or in config file -->
+    <input type="hidden" name="action[mail][to]" value="petun911@gmail.com" />
+    <input type="hidden" name="action[redirect][to]" value="/feedback-success.html" />
+
                 ...
 ```
 
