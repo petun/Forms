@@ -19,7 +19,7 @@ $config = array(
 		'rules' => array(
 			array('name', 'required'),
 			array('telephone', 'required'),
-			array('email', 'email'),
+			array('email', 'email', 'allowEmpty' => false),
 			array('regexText', 'regex', 'rule' => '/\d+/', 'errorMessage' => 'В поле %s должны быть только числа'),
 		),
 		'actions' => array(

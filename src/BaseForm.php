@@ -104,7 +104,7 @@ class BaseForm
 			$validator = Validators\BaseValidator::createValidator($name, $params);
 
 			if (!$validator->validateAttribute($attribute, $this->_getAttributeValue($attribute))) {
-				$this->_errors[] = sprintf($validator->getError(), $this->_getAttributeLabel($attribute));
+				$this->_errors[$attribute] = sprintf($validator->getError(), $this->_getAttributeLabel($attribute));
 			}
 
 		}

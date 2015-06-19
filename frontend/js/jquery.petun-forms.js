@@ -2,7 +2,7 @@ $.fn.ptmForm = function (options) {
 
     function supportAjaxUploadProgressEvents() {
         var xhr = new XMLHttpRequest();
-        return !! (xhr && ('upload' in xhr) && ('onprogress' in xhr.upload));
+        return !!(xhr && ('upload' in xhr) && ('onprogress' in xhr.upload));
     }
 
     var settings = $.extend({
@@ -11,7 +11,8 @@ $.fn.ptmForm = function (options) {
         'errorClass': 'form-result__error',
         'loadingClass': 'form-result__loading',
         'handler': 'handler.php',
-        'onSuccess' : function(form){}
+        'onSuccess': function (form) {
+        }
     }, options);
 
     //console.log(settings);
@@ -20,9 +21,15 @@ $.fn.ptmForm = function (options) {
 
         var resultDiv = $(settings.renderTo, this);
 
-        $(this).on('submit', function(e){
+        $(this).on('submit', function (e) {
 
             var form = this;
+
+
+            // remove previous validation class and messages
+            // remove form-group has-error
+            $('.form-group', form).removeClass('has-error');
+            $('*[data-error-message]').text('');
 
             e.preventDefault();
 
@@ -41,7 +48,8 @@ $.fn.ptmForm = function (options) {
                 contentType: supportAjaxUploadProgressEvents() ? false : 'application/x-www-form-urlencoded; charset=UTF-8',
                 processData: !supportAjaxUploadProgressEvents(),
 
-                success: function(r) {
+                success: function (r) {
+                    console.log(r);
                     resultDiv.removeClass(settings.loadingClass);
                     resultDiv.html("<p>" + r.message + "</p>");
                     if (r.r) {
@@ -57,12 +65,30 @@ $.fn.ptmForm = function (options) {
                     } else {
                         resultDiv.addClass(settings.errorClass);
                         if (r.errors) {
+                            // result div
                             var html = resultDiv.html() + '<ul>';
                             for (i in r.errors) {
+                                console.log(i);
                                 html += "<li>" + r.errors[i] + "</li>";
+
+                                // if we use bootstrap forms
+                                if ($('*[name=' + i + ']', form).parent().hasClass('form-group')) {
+                                    $('*[name=' + i + ']', form).parent().addClass('has-error');
+                                }
+
+                                // if we have elements to render error message
+                                if ($('*[data-error-message=' + i + ']', form).size() > 0) {
+                                    $('*[data-error-message=' + i + ']', form).text(r.errors[i]);
+                                }
+
+
                             }
                             html += '</ul>';
                             resultDiv.html(html);
+
+                            // bootstrap errors support
+
+
                         }
                     }
                 }

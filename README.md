@@ -43,6 +43,11 @@ Add formId to forms
     <input type="hidden" name="action[mail][to]" value="petun911@gmail.com" />
     <input type="hidden" name="action[redirect][to]" value="/feedback-success.html" />
 
+    <div class="form-group">
+        <label for="nameId">Name</label>
+        <input type="text" name="name" class="form-control" id="nameId" >
+        <p class="help-block" data-error-message="name"></p>
+    </div>
                 ...
 ```
 
