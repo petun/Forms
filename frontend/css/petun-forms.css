@@ -1,16 +1,21 @@
+.form-result.form-result__loading {
+  background: url("../img/loader.gif") no-repeat left center;
+  min-width: 32px;
+  min-height: 32px; }
+.form-result.form-result__success {
+  color: #197919;
+  font-weight: bold; }
+.form-result.form-result__error {
+  color: #ab2929; }
+
 .modal .modal-footer .form-result {
   float: left;
   width: 410px;
   text-align: left; }
-  .modal .modal-footer .form-result.form-result__loading {
-    background: url("../img/loader.gif") no-repeat left center;
-    min-width: 32px;
-    min-height: 32px; }
   .modal .modal-footer .form-result.form-result__success {
     font-size: 14px;
-    color: #197919;
-    line-height: 30px;
-    font-weight: bold; }
+    line-height: 30px; }
   .modal .modal-footer .form-result.form-result__error {
-    font-size: 11px;
-    color: #ab2929; }
+    font-size: 11px; }
+
+/*# sourceMappingURL=petun-forms.css.map */
