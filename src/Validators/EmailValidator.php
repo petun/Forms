@@ -2,6 +2,13 @@
 
 namespace Petun\Forms\Validators;
 
+/**
+ * Class EmailValidator
+ * @package Petun\Forms\Validators
+ * @author Petr Marochkin <petun911@gmail.com>
+ * @link http://petun.ru/
+ * @copyright 2015, Petr Marochkin
+ */
 class EmailValidator extends  BaseValidator {
 
 	/**

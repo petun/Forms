@@ -2,23 +2,53 @@
 
 namespace Petun\Forms\Validators;
 
+/**
+ * Class BaseValidator
+ * @package Petun\Forms\Validators
+ * @author Petr Marochkin <petun911@gmail.com>
+ * @link http://petun.ru/
+ * @copyright 2015, Petr Marochkin
+ */
 abstract class BaseValidator {
 
+	/**
+	 * @param $attribute
+	 * @param $value
+	 * @return mixed
+	 */
 	abstract function validateAttribute($attribute, $value);
 
+	/**
+	 * @var
+	 */
 	protected $_error;
 
+	/**
+	 * @var string В любом валидаторе можно переопределить сообщение об ошибке
+	 */
 	public $errorMessage;
 
 
+	/**
+	 * @param $defaultErrorMessage
+	 * @return mixed
+	 */
 	public function setError($defaultErrorMessage) {
 		return $this->_error = $this->errorMessage ? $this->errorMessage : $defaultErrorMessage;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function getError() {
 		return $this->_error;
 	}
 
+	/**
+	 * @param $name
+	 * @param array $params
+	 * @throws \Exception
+	 */
 	public static function createValidator($name, $params = array()) {
 		if (class_exists($className = "\\Petun\\Forms\\Validators\\".ucfirst($name)."Validator")) {
 			$class = new $className;

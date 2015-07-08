@@ -4,16 +4,30 @@ namespace Petun\Forms\Actions;
 
 use Petun\Forms\BaseForm;
 
+/**
+ * Class BaseAction
+ * @package Petun\Forms\Actions
+ * @author Petr Marochkin <petun911@gmail.com>
+ * @link http://petun.ru/
+ * @copyright 2015, Petr Marochkin
+ */
 abstract class BaseAction {
 
 	protected $_form;
+
 	public function __construct(BaseForm $form) {
 		$this->_form = $form;
 	}
 
-
 	abstract function run();
 
+
+	/**
+	 * @param BaseForm $form
+	 * @param string $name Название действия
+	 * @param array $params Параметры действия
+	 * @throws \Exception
+	 */
 	public static function createAction(\Petun\Forms\BaseForm $form, $name, $params = array()) {
 		if (class_exists($className = "\\Petun\\Forms\\Actions\\".ucfirst($name)."Action")) {
 			$classInstance =  new $className($form);

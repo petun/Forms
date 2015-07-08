@@ -20,6 +20,7 @@ In your main script file
 
 ```javascript
 $(function(){
+    // this is default options
     $('.petun-form').ptmForm(
         {
             'renderTo': '.form-result',
@@ -27,12 +28,21 @@ $(function(){
             'errorClass': 'form-result__error',
             'loadingClass': 'form-result__loading',
             'handler': 'assets/template/Forms/handler.php',
-            'onSuccess': function(form) {
-                            window.setTimeout(function(){$('#callbackForm').modal('toggle')} , 2000);
-                        }
+            'onSuccess': ...
         }
     );
-});
+
+    // simple js callback example
+    $('.petun-form').ptmForm(
+        {
+            'handler': 'assets/template/Forms/handler.php',
+            'onSuccess': function(form) {
+                window.setTimeout(function(){$('#callbackForm').modal('toggle')} , 2000);
+            }
+        }
+    );
+
+    });
 ```
 
 Add formId to forms
@@ -112,6 +122,19 @@ array(
 		)
 	)
 )
+```
+
+
+## Available Rules
+```php
+'rules' => array(
+	array('field', 'required'),
+	array('field', 'email', 'allowEmpty' => false),
+	array('field', 'number', 'allowEmpty' => false),
+	array('field', 'regex', 'rule' => '/\d+/', 'errorMessage' => 'В поле %s должны быть только числа'),
+	array('field', 'date', 'allowEmpty' => false, 'format' => 'dd.mm.yyyy'),
+
+),
 ```
 
 

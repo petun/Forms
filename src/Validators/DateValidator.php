@@ -2,6 +2,13 @@
 
 namespace Petun\Forms\Validators;
 
+/**
+ * Class CDateValidator
+ * @package Petun\Forms\Validators
+ * @author Petr Marochkin <petun911@gmail.com>
+ * @link http://petun.ru/
+ * @copyright 2015, Petr Marochkin
+ */
 class CDateValidator extends \Petun\Forms\Validators\BaseValidator
 {
 
@@ -19,12 +26,6 @@ class CDateValidator extends \Petun\Forms\Validators\BaseValidator
 	 */
 	public $allowEmpty = true;
 
-	/**
-	 * @var string the name of the attribute to receive the parsing result.
-	 * When this property is not null and the validation is successful, the named attribute will
-	 * receive the parsing result.
-	 */
-	public $timestampAttribute;
 
 
 	/**
@@ -37,7 +38,6 @@ class CDateValidator extends \Petun\Forms\Validators\BaseValidator
 
 		$valid = false;
 
-		// reason of array checking is explained here: https://github.com/yiisoft/yii/issues/1955
 		if (!is_array($value)) {
 			$formats = is_string($this->format) ? array($this->format) : $this->format;
 			foreach ($formats as $format) {

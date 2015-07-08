@@ -2,25 +2,54 @@
 
 namespace Petun\Forms\Actions;
 
+/**
+ * Class MailAction
+ * @package Petun\Forms\Actions
+ * @author Petr Marochkin <petun911@gmail.com>
+ * @link http://petun.ru/
+ * @copyright 2015, Petr Marochkin
+ */
 class MailAction extends BaseAction
 {
 
+	/**
+	 * @var
+	 */
 	public $subject;
 
+	/**
+	 * @var
+	 */
 	public $from;
 
+	/**
+	 * @var
+	 */
 	public $fromName;
 
+	/**
+	 * @var
+	 */
 	public $to;
 
+	/**
+	 * @var bool
+	 */
 	public $processFiles = true;
 
 
+	/**
+	 * @param \Petun\Forms\BaseForm $form
+	 */
 	public function __construct(\Petun\Forms\BaseForm $form) {
 		$this->_form = $form;
 	}
 
+	/**
+	 * @return string
+	 */
 	private function _getBody() {
+		//todo добавить стиль для письма
 		$html = "<h2>Письмо с сайта</h2>\n\n<ul>";
 		foreach ($this->_form->fieldValues() as $label => $value) {
 			$value = is_array($value) ? implode(', ', $value) : $value;
@@ -32,6 +61,11 @@ class MailAction extends BaseAction
 	}
 
 
+	/**
+	 * @return bool
+	 * @throws \Exception
+	 * @throws \phpmailerException
+	 */
 	function run() {
 		//Create a new PHPMailer instance
 		$mail = new \PHPMailer;

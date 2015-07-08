@@ -2,29 +2,81 @@
 
 namespace Petun\Forms;
 
+/**
+ * Базовый класс для работы с формой.
+ * Процесс следующий:
+ * 1. Создается форма  new BaseForm(...)
+ * 2. Далее загружаются данные
+ * 3. Прогоняется валидация, если все ок
+ * 4. Выполняются действия
+ *
+ * Class BaseForm
+ * @package Petun\Forms
+ * @author Petr Marochkin <petun911@gmail.com>
+ * @link http://petun.ru/
+ * @copyright 2015, Petr Marochkin
+ */
 class BaseForm
 {
-
+	/**
+	 * @var string ID формы из конфиг файла
+	 */
 	private $_id;
 
+	/**
+	 * @var array Данные из запроса - $_POST
+	 */
 	private $_data;
 
+	/**
+	 * @var array
+	 */
 	private $_actionParams = array();
 
+	/**
+	 * @var array Массив из конфиг файла с действиями
+	 */
 	public $actions = array();
 
+	/**
+	 * @var array Ошибки
+	 */
 	private $_errors = array();
 
+	/**
+	 * @var array Поля из конфиг файла
+	 */
 	public $fields  = array();
 
+	/**
+	 * @var array Список правил валидации из конфиг файла
+	 */
 	public $rules  = array();
 
+	/**
+	 * Сообщение по умолчанию
+	 * @var string
+	 */
 	public $successMessage = 'Данные успешно отправлены.';
 
-	public function __construct($id) {
+
+	/**
+	 * @param $id int ID формы (ключ в конфиг файле)
+	 * @param $params array Конфигурация формы
+	 */
+	public function __construct($id, array $params) {
 		$this->_id = $id;
+
+		foreach ($params as $key => $value) {
+				$this->{$key} = $value;
+		}
 	}
 
+	/**
+	 * Устанавливает данные формы из массива ($data). Если есть $data['action'] - сохраняет в отдельный массив,
+	 * который в дальнейшем будет использоваться при запуске действий.
+	 * @param $data
+	 */
 	public function setData($data) {
 		if (array_key_exists('action', $data)) {
 			$this->_actionParams = $data['action'];
@@ -34,10 +86,16 @@ class BaseForm
 		$this->_data = $data;
 	}
 
+	/**
+	 * @return int|string
+	 */
 	public function getId() {
 		return $this->_id;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function fieldValues() {
 		$r = array();
 		foreach ($this->fields as $alias => $label) {
@@ -48,11 +106,15 @@ class BaseForm
 		return $r;
 	}
 
+	/**
+	 * @param $field
+	 * @return null
+	 */
 	public function fieldValue($field) {
 		if (array_key_exists($field, $this->_data)) {
 			return $this->_data[$field];
 		}
-		return;
+		return null;
 	}
 
 	/**
@@ -75,6 +137,11 @@ class BaseForm
 		return array_key_exists($attribute, $this->fields) ? $this->fields[$attribute] : null;
 	}
 
+	/**
+	 * Выполняет действия после валидации формы
+	 * Параметры действия складываются из тех что в конфиге + те что пришли в $_POST['action']
+	 * @throws \Exception
+	 */
 	public function runActions() {
 		foreach ($this->actions as $actionSet) {
 			$name = array_shift($actionSet);
@@ -92,10 +159,14 @@ class BaseForm
 	}
 
 
+	/**
+	 * Производит валидацию по всем полям. Вызывается из Application.
+	 * @return bool
+	 * @throws \Exception
+	 */
 	public function validate() {
 
 		foreach ($this->rules as $ruleSet) {
-
 			$attribute = array_shift($ruleSet);
 			$name = array_shift($ruleSet);
 			$params = $ruleSet;
@@ -128,6 +199,7 @@ class BaseForm
 	// нужно для того, что бы после выполнения action какие то нужные данные попадали на js файл
 	private $_actionResult = array();
 
+
 	/**
 	 * Добавляет переменные от екшена. Вызывается из екшенов
 	 * @param $name
@@ -145,30 +217,8 @@ class BaseForm
 	 */
 	public function getActionResults($name = null) {
 		if ($name) {
-
+			// todo not implemented
 		}
 		return $this->_actionResult;
 	}
-
-
-	/**
-	 * Формирует объект класса из массива
-	 * @param       $id
-	 * @param array $params
-	 *
-	 * @return BaseForm
-	 */
-	public static function createFromArray($id, $params = array()) {
-		$result = new BaseForm($id);
-
-		foreach (array('fields', 'rules', 'actions', 'successMessage') as $i) {
-			if (!empty($params) &&  array_key_exists($i, $params)) {
-				$result->{$i} = $params[$i];
-			}
-		}
-
-		return $result;
-	}
-
-
 }

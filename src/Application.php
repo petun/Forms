@@ -2,15 +2,36 @@
 
 namespace Petun\Forms;
 
+
+/**
+ * Class Application
+ * @package Petun\Forms
+ * @author Petr Marochkin <petun911@gmail.com>
+ * @link http://petun.ru/
+ * @copyright 2015, Petr Marochkin
+ */
 class Application
 {
 
+	/**
+	 * @var BaseForm
+	 */
 	private $_form;
 
+	/**
+	 * @var null
+	 */
 	private $_request;
 
+	/**
+	 *
+	 */
 	const  REQUEST_KEY = 'formId';
 
+	/**
+	 * @param array $config
+	 * @param null $request
+	 */
 	public function  __construct(array $config, $request = null) {
 
 		$this->_request = $request ? $request : $_POST;
@@ -28,9 +49,7 @@ class Application
 			//throw new \Exception('form with id ' . $this->_request[self::REQUEST_KEY] . ' not found in config');
 		}
 
-		$this->_form = BaseForm::createFromArray(
-			$this->_request[self::REQUEST_KEY], $config[$this->_request[self::REQUEST_KEY]]
-		);
+		$this->_form = new BaseForm($this->_request[self::REQUEST_KEY], $config[$this->_request[self::REQUEST_KEY]]);
 	}
 
 	/**
@@ -48,6 +67,10 @@ class Application
 		return false;
 	}
 
+	/**
+	 * Отправляет json ответ об ошибке на форме
+	 * @param $message
+	 */
 	private function _statusError($message) {
 		$result = array(
 			'r' => false,
@@ -60,6 +83,9 @@ class Application
 		exit;
 	}
 
+	/**
+	 *
+	 */
 	public function handleRequest() {
 		if ($this->_processForm()) {
 
