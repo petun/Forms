@@ -38,27 +38,37 @@ class MailAction extends BaseAction
 	 */
 	public $processFiles = true;
 
+	/*
+	 * @var string - Smarty template name. Located in dir - smarty/templates. eg. default.tpl
+	 */
+	public $template = 'default.tpl';
+
+	protected $_smarty;
+
 
 	/**
 	 * @param \Petun\Forms\BaseForm $form
 	 */
 	public function __construct(\Petun\Forms\BaseForm $form) {
 		$this->_form = $form;
+
+		// init smarty template engine
+		$this->_smarty = new \Smarty();
+		$baseDir = dirname(__FILE__). '../../../smarty/';
+		$this->_smarty->setTemplateDir($baseDir .  'templates');
+		$this->_smarty->setCompileDir($baseDir . 'templates_c');
+		$this->_smarty->setCacheDir($baseDir . 'cache');
+		$this->_smarty->setConfigDir($baseDir . 'configs');
 	}
 
 	/**
 	 * @return string
 	 */
 	private function _getBody() {
-		//todo добавить стиль для письма
-		$html = "<h2>".$this->subject."</h2>\n\n<ul>";
-		foreach ($this->_form->fieldValues() as $label => $value) {
-			$value = is_array($value) ? implode(', ', $value) : $value;
-			$html .= sprintf("<li><strong>%s</strong>: %s</li>\n", $label, $value ? $value : '-');
-
-		}
-		$html .= '</ul>';
-		return $html;
+		$this->_smarty->assign('subject', $this->subject);
+		$this->_smarty->assign('to', $this->_getTo());
+		$this->_smarty->assign('values', $this->_form->fieldValues());
+		return $this->_smarty->fetch($this->template);
 	}
 
 

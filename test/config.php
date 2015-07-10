@@ -86,12 +86,14 @@ $config = array(
 		'actions' => array(
 			array(
 				'mail', 'subject' => 'Новое письмо с сайта (для администратора)',
+				'template' => 'default.tpl', // можно не указывать. Этот шаблон по умолчанию
 				'from' => 'no-reply@' . $siteName,
 				'fromName' => 'Администратор',
 				'to' => $mailTo
 			),
 			array(
 				'userMail', 'subject' => 'Ваш заказ успешно обработан',
+				'template' => 'default.tpl', // можно не указывать. Этот шаблон по умолчанию
 				'from' => 'no-reply@' . $siteName,
 				'fromName' => 'Администратор',
 				'to' => array('eval'=> '$this->_form->fieldValue("email")'),
