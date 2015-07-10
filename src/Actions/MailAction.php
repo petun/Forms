@@ -28,7 +28,8 @@ class MailAction extends BaseAction
 	public $fromName;
 
 	/**
-	 * @var
+	 * if array - try to eval string in key 'eval'. If string - use string.
+	 * @var string|array
 	 */
 	public $to;
 
@@ -50,7 +51,7 @@ class MailAction extends BaseAction
 	 */
 	private function _getBody() {
 		//todo добавить стиль для письма
-		$html = "<h2>Письмо с сайта</h2>\n\n<ul>";
+		$html = "<h2>".$this->subject."</h2>\n\n<ul>";
 		foreach ($this->_form->fieldValues() as $label => $value) {
 			$value = is_array($value) ? implode(', ', $value) : $value;
 			$html .= sprintf("<li><strong>%s</strong>: %s</li>\n", $label, $value ? $value : '-');
@@ -78,8 +79,7 @@ class MailAction extends BaseAction
 		// from
 		$mail->setFrom($this->from, $this->fromName);
 
-		//Set who the message is to be sent to
-		$mail->addAddress($this->to);
+		$mail->addAddress($this->_getTo());
 
 		//Set the subject line
 		$mail->Subject = $this->subject;
@@ -101,4 +101,15 @@ class MailAction extends BaseAction
 			return true;
 		}
 	}
+
+
+	protected function _getTo() {
+		//Set who the message is to be sent to
+		if (is_array($this->to) && array_key_exists('eval', $this->to)) {
+			return $this->evaluateExpression($this->to['eval']);
+		} else {
+			return (string)$this->to;
+		}
+	}
+
 }

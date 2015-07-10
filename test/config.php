@@ -85,10 +85,16 @@ $config = array(
 		),
 		'actions' => array(
 			array(
-				'mail', 'subject' => 'Новое письмо с сайта',
+				'mail', 'subject' => 'Новое письмо с сайта (для администратора)',
 				'from' => 'no-reply@' . $siteName,
 				'fromName' => 'Администратор',
 				'to' => $mailTo
+			),
+			array(
+				'userMail', 'subject' => 'Ваш заказ успешно обработан',
+				'from' => 'no-reply@' . $siteName,
+				'fromName' => 'Администратор',
+				'to' => array('eval'=> '$this->_form->fieldValue("email")'),
 			),
 		)
 	),
