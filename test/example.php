@@ -30,7 +30,7 @@
 		    <p class="help-block">Example block-level help text here.</p>
 	    </div>
 
-        <input type="hidden" name="action[mail][to]" value="petun911@gmail.com" />
+        <input type="hidden" name="action[mail][to]" value="petun911@gmail.com, admin@example.com,another@example.com" />
 	    <input type="hidden" name="action[mail][subject]" value="Mail Subject" />
 
 

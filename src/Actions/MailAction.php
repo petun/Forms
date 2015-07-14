@@ -84,12 +84,18 @@ class MailAction extends BaseAction
 		$mail->CharSet = 'utf-8';
 
 		// Set PHPMailer to use the sendmail transport
-		$mail->isSendmail();
+		//$mail->isSendmail();
 
 		// from
 		$mail->setFrom($this->from, $this->fromName);
 
-		$mail->addAddress($this->_getTo());
+		$to = $this->_getTo();
+		$toArray = explode(',', trim($to));
+		foreach ($toArray as $toEmail) {
+			//todo add email validation here
+			$mail->addAddress(trim($toEmail));
+		}
+
 
 		//Set the subject line
 		$mail->Subject = $this->subject;
@@ -113,6 +119,10 @@ class MailAction extends BaseAction
 	}
 
 
+	/**
+	 * Return evaluated statement result or string
+	 * @return mixed|string
+	 */
 	protected function _getTo() {
 		//Set who the message is to be sent to
 		if (is_array($this->to) && array_key_exists('eval', $this->to)) {
