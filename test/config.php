@@ -84,6 +84,7 @@ $config = array(
 			array('email', 'email'),
 		),
 		'actions' => array(
+			array('counter'), // put this action at the top of the actions
 			array(
 				'mail', 'subject' => 'Новое письмо с сайта (для администратора)',
 				'template' => 'default.tpl', // можно не указывать. Этот шаблон по умолчанию

@@ -1,3 +1,4 @@
 vendor
 .idea
 smarty/templates_c/*.php
+CounterAction.counter

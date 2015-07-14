@@ -54,7 +54,7 @@ class MailAction extends BaseAction
 
 		// init smarty template engine
 		$this->_smarty = new \Smarty();
-		$baseDir = dirname(__FILE__). '../../../smarty/';
+		$baseDir = dirname(__FILE__). '/../../smarty/';
 		$this->_smarty->setTemplateDir($baseDir .  'templates');
 		$this->_smarty->setCompileDir($baseDir . 'templates_c');
 		$this->_smarty->setCacheDir($baseDir . 'cache');
@@ -68,6 +68,7 @@ class MailAction extends BaseAction
 		$this->_smarty->assign('subject', $this->subject);
 		$this->_smarty->assign('to', $this->_getTo());
 		$this->_smarty->assign('values', $this->_form->fieldValues());
+		$this->_smarty->assign('actionResults', $this->_form->getActionResults());
 		return $this->_smarty->fetch($this->template);
 	}
 
