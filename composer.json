@@ -1,12 +1,14 @@
 {
-  "autoload": {
-    "psr-4": {
-      "Petun\\Forms\\": "src"
+    "name": "petun/Forms",
+    "description": "Package for simple forms handle in any CMS or Frameworks",
+    "autoload": {
+        "psr-4": {
+            "Petun\\Forms\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=5.3.0",
+        "phpmailer/phpmailer": "dev-master",
+        "smarty/smarty": "~3.1"
     }
-  },
-  "require": {
-    "php": ">=5.3.0",
-    "phpmailer/phpmailer": "dev-master",
-    "smarty/smarty": "~3.1"
-  }
 }
