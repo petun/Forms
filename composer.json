@@ -1,5 +1,5 @@
 {
-    "name": "petun/Forms",
+    "name": "petun/forms",
     "description": "Package for simple forms handle in any CMS or Frameworks",
     "autoload": {
         "psr-4": {

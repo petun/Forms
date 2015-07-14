@@ -4,7 +4,7 @@ Package for simple forms handle in any CMS or Frameworks.
 ## Installation
 
 ```sh
-git clone https://github.com/petun/Forms.git
+git clone https://github.com/petun/forms.git
 cd Forms
 cp test/base_config.php config.php
 cp test/handler.php .
@@ -144,9 +144,9 @@ Script you can get from [example script]
 
 
 
-[example modal]:https://github.com/petun/Forms/blob/master/test/example_modal.html
+[example modal]:https://github.com/petun/forms/blob/master/test/example_modal.html
 
-[example script]:https://github.com/petun/Forms/blob/master/frontend/js/script.js
+[example script]:https://github.com/petun/forms/blob/master/frontend/js/script.js
 
 CSS Sample (SASS)
 ```css
