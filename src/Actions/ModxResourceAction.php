@@ -10,18 +10,16 @@ namespace Petun\Forms\Actions;
  * @link http://petun.ru/
  * @copyright 2015, Petr Marochkin
  */
-class ModxResourceAction extends BaseAction
+class ModxResourceAction extends BaseCmsAction
 {
 
-	/**
-	 * @var
-	 */
-	public $coreCmsPath;
 
 	/**
+	 * Store tv array for save
 	 * @var
 	 */
-	public $resource;
+	public $tv;
+
 
 	/**
 	 * @var
@@ -37,40 +35,26 @@ class ModxResourceAction extends BaseAction
 
 			$object = $this->_modx->newObject('modResource');
 
-			$tvs = array();
-			if (isset($this->resource['tv'])) {
-				$tvs = $this->resource['tv']; unset($this->resource['tv']);
-			}
+			/*$tvs = array();
+			if (isset($this->fields['tv'])) {
+				$tvs = $this->fields['tv']; unset($this->fields['tv']);
+			}*/
 
-			foreach ($this->resource as $name => $value) {
-				$object->set($name, $this->_getValue($value));
+			foreach ($this->_getFieldValues() as $name => $value) {
+				$object->set($name, $value);
 			}
 
 			$object->save();
 
-			if ($tvs) {
-				foreach ($tvs as $tvName => $value) {
-					$object->setTVValue($tvName, $this->_getValue($value));
+			if ($this->tv) {
+				foreach ($this->_getFieldValues('tv') as $name => $value) {
+					$object->setTVValue($name, $value);
 				}
 			}
-
 		}
 	}
 
-	/**
-	 * @param $valueArray
-	 * @return bool|mixed
-	 */
-	private function _getValue($valueArray) {
-		if (isset($valueArray['eval'])) {
-			return $this->evaluateExpression($valueArray['eval']);
-		}
 
-		if (isset($valueArray['value'])) {
-			return $valueArray['value'];
-		}
-		return false;
-	}
 
 
 	/**
