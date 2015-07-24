@@ -50,17 +50,19 @@ $config = array(
 			),
 			array(
 				'netcat',
+				'classId' => 2151,
+				'subdivisionId' => 441,
+				'subClassId' => 515,
+				'coreCmsPath' => dirname(__FILE__).'/../',
 				'fields' => array(
-					/*
-					 * '
-					 * Subdivision_ID' => $subId,
-            'Sub_Class_ID' => $ccId,
-            'User_ID' => 1,
-            'Checked' => 1,
-					Created
-					 */
-				)
-			)
+					'name' => array('eval' => '$this->_form->fieldValue("name")'),
+					'comment' => array('eval' => '$this->_form->fieldValue("message")'),
+					'email' => array('eval' => '$this->_form->fieldValue("email")'),
+					'User_ID' => 1,
+					'Checked' => 0,
+					// Created and Priority Calc Automatically
+				),
+			),
 		)
 	),
 

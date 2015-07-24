@@ -34,7 +34,7 @@ abstract class BaseCmsAction extends \Petun\Forms\Actions\BaseAction {
 	}
 
 	/**
-	 * @param $valueArray
+	 * @param array|mixed $valueArray
 	 * @return bool|mixed
 	 */
 	protected function _getValue($valueArray) {
@@ -44,7 +44,8 @@ abstract class BaseCmsAction extends \Petun\Forms\Actions\BaseAction {
 
 		if (isset($valueArray['value'])) {
 			return $valueArray['value'];
+		} else {
+			return $valueArray;
 		}
-		return false;
 	}
 }
