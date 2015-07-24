@@ -49,7 +49,7 @@ $.fn.ptmForm = function (options) {
                 processData: !supportAjaxUploadProgressEvents(),
 
                 success: function (r) {
-                    console.log(r);
+                    //console.log(r);
                     resultDiv.removeClass(settings.loadingClass);
                     resultDiv.html("<p>" + r.message + "</p>");
                     if (r.r) {
@@ -68,7 +68,7 @@ $.fn.ptmForm = function (options) {
                             // result div
                             var html = resultDiv.html() + '<ul>';
                             for (i in r.errors) {
-                                console.log(i);
+                                //console.log(i);
                                 html += "<li>" + r.errors[i] + "</li>";
 
                                 // if we use bootstrap forms
