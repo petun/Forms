@@ -56,7 +56,7 @@ $.fn.ptmForm = function (options) {
                         resultDiv.addClass(settings.successClass);
                         form.reset();
 
-                        settings.onSuccess(form);
+                        settings.onSuccess(form, r);
 
                         if (r.redirect) {
                             window.location.replace(r.redirect);

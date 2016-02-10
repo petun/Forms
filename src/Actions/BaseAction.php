@@ -13,6 +13,7 @@ use Petun\Forms\BaseForm;
  */
 abstract class BaseAction {
 
+	/** @var BaseForm  */
 	protected $_form;
 
 	public function __construct(BaseForm $form) {
@@ -29,7 +30,9 @@ abstract class BaseAction {
 	 * @throws \Exception
 	 */
 	public static function createAction(\Petun\Forms\BaseForm $form, $name, $params = array()) {
-		if (class_exists($className = "\\Petun\\Forms\\Actions\\".ucfirst($name)."Action")) {
+		$className = !empty($params['class']) ? $params['class'] : "\\Petun\\Forms\\Actions\\".ucfirst($name)."Action";
+
+		if (class_exists($className)) {
 			$classInstance =  new $className($form);
 			foreach ($params as $name => $value) {
 				if (property_exists($classInstance, $name)) {

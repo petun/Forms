@@ -36,7 +36,7 @@ $(function(){
     $('.petun-form').ptmForm(
         {
             'handler': 'assets/template/Forms/handler.php',
-            'onSuccess': function(form) {
+            'onSuccess': function(form, result) {
                 window.setTimeout(function(){$('#callbackForm').modal('toggle')} , 2000);
             }
         }
