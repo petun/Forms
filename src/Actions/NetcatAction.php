@@ -12,8 +12,6 @@ use nc_Core;
  */
 class NetcatAction extends BaseCmsAction
 {
-
-
 	/**
 	 * Class id of inserted object
 	 *
@@ -46,6 +44,7 @@ class NetcatAction extends BaseCmsAction
 		$query = sprintf("INSERT INTO Message%d (%s) VALUES (%s)", $this->classId, implode(', ', $keys)
 			, implode(', ', $values));
 
+		//todo add return field
 		return $netcatDb->query($query);
 	}
 

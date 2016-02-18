@@ -43,6 +43,11 @@ class MailAction extends BaseAction
 	 */
 	public $template = 'default.tpl';
 
+	/**
+	 * @var string Email address
+	 */
+	public $reply;
+
 	protected $_smarty;
 
 
@@ -90,6 +95,8 @@ class MailAction extends BaseAction
 		// from
 		$mail->setFrom($this->from, $this->fromName);
 
+		$mail->addReplyTo($this->_getReply());
+
 		$to = $this->_getTo();
 		$toArray = explode(',', trim($to));
 		foreach ($toArray as $toEmail) {
@@ -126,11 +133,31 @@ class MailAction extends BaseAction
 	 */
 	protected function _getTo() {
 		//Set who the message is to be sent to
+		//todo remove eval and add Closure to docs
 		if (is_array($this->to) && array_key_exists('eval', $this->to)) {
 			return $this->evaluateExpression($this->to['eval']);
-		} else {
-			return (string)$this->to;
+		} else if ($this->to instanceof \Closure){
+			return call_user_func($this->to, $this->_form);
 		}
+
+		return (string)$this->to;
+	}
+
+	/**
+	 * Return evaluated statement result or string
+	 * @return mixed|string
+	 */
+	protected function _getReply() {
+		//Set who the message is to be sent to
+		//todo remove eval and add Closure to docs
+		//todo copy paste here. Fix it!
+		if (is_array($this->reply) && array_key_exists('eval', $this->reply)) {
+			return $this->evaluateExpression($this->reply['eval']);
+		} else if ($this->reply instanceof \Closure){
+			return call_user_func($this->reply, $this->_form);
+		}
+
+		return (string)$this->reply;
 	}
 
 }
