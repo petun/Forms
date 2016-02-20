@@ -44,8 +44,12 @@ class NetcatAction extends BaseCmsAction
 		$query = sprintf("INSERT INTO Message%d (%s) VALUES (%s)", $this->classId, implode(', ', $keys)
 			, implode(', ', $values));
 
-		//todo add return field
-		return $netcatDb->query($query);
+		$result = $netcatDb->query($query);
+		if ($result) {
+			$this->_form->addActionResult('netcatId', $netcatDb->insert_id);
+		}
+
+		return $result;
 	}
 
 	/**
