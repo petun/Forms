@@ -4,10 +4,10 @@
 $mailTo = 'petun@Air-Petr.Dlink';
 $siteName = 'example.com';
 
-$config = array(
-	'feedbackForm' => array(
+$config = [
+	'feedbackForm' => [
 		'successMessage' => 'ОК',
-		'fields' => array(
+		'fields' => [
 			'name' => 'Ваше имя',
 			'telephone' => 'Ваш телефон',
 			'email' => 'Email',
@@ -15,105 +15,112 @@ $config = array(
 			'check-test' => 'test check',
 			'regexText' => 'Regex Text',
 
-		),
-		'rules' => array(
-			array('name', 'required'),
-			array('telephone', 'required'),
-			array('email', 'email', 'allowEmpty' => false),
-			array('regexText', 'regex', 'rule' => '/\d+/', 'errorMessage' => 'В поле %s должны быть только числа'),
-		),
-		'actions' => array(
-			array(
+		],
+		'rules' => [
+			['name', 'required'],
+			['telephone', 'required'],
+			['email', 'email', 'allowEmpty' => false],
+			['regexText', 'regex', 'rule' => '/\d+/', 'errorMessage' => 'В поле %s должны быть только числа'],
+		],
+		'actions' => [
+			[
 				'mail', 'subject' => 'Новое письмо с сайта',
 				'from' => 'no-reply@' . $siteName,
 				'fromName' => 'Администратор',
 				'to' => $mailTo
-			),
-			/*array(
+			],
+			/*[
 				'redirect',
-			),*/
-			array(
+			],*/
+			[
 				'modxResource',
 				'coreCmsPath' => '/Users/petun/Sites/modx/core/',
-				'fields' => array(
-					'pagetitle' => array('eval' => '$this->_form->fieldValue("name")'),
-					'parent' => array('value' => '0'),
-					'template' => array('value' => '1'),
-					'published' => array('value' => '1'),
-					'description' => array('value' => 'sample description'),
-					'introtext' => array('eval' => '$this->_form->fieldValue("telephone") . $this->_form->fieldValue("email")'),
-				),
-				'tv' => array(
-					'date' => array('value' => '2013-01-01 12:12'),
-					'typeId' => array('value' => '3')
-				)
-			),
-			array(
+				'fields' => [
+					'pagetitle' => ['eval' => '$this->_form->fieldValue("name")'],
+					'parent' => ['value' => '0'],
+					'template' => ['value' => '1'],
+					'published' => ['value' => '1'],
+					'description' => ['value' => 'sample description'],
+					'introtext' => ['eval' => '$this->_form->fieldValue("telephone") . $this->_form->fieldValue("email")'],
+				],
+				'tv' => [
+					'date' => ['value' => '2013-01-01 12:12'],
+					'typeId' => ['value' => '3']
+				]
+			],
+			[
 				'netcat',
 				'classId' => 2151,
 				'subdivisionId' => 441,
 				'subClassId' => 515,
 				'coreCmsPath' => dirname(__FILE__).'/../',
-				'fields' => array(
-					'name' => array('eval' => '$this->_form->fieldValue("name")'),
-					'comment' => array('eval' => '$this->_form->fieldValue("message")'),
-					'email' => array('eval' => '$this->_form->fieldValue("email")'),
+				'fields' => [
+					'name' => ['eval' => '$this->_form->fieldValue("name")'],
+					'comment' => ['eval' => '$this->_form->fieldValue("message")'],
+					'email' => ['eval' => '$this->_form->fieldValue("email")'],
 					'User_ID' => 1,
 					'Checked' => 0,
 					// Created and Priority Calc Automatically
-				),
-			),
-		)
-	),
+				],
+			],
+		]
+	],
 
-	'callbackForm' => array(
-		'fields' => array(
+	'callbackForm' => [
+		'fields' => [
 			'name' => 'Ваше имя',
 			'telephone' => 'Ваш телефон',
 			'comment' => 'Комментарий / вопрос',
-		),
-		'rules' => array(
-			array('name', 'required'),
-			array('telephone', 'regex', 'rule' => '/^[\d\s\+\-\(\)]+$/', 'errorMessage'=> 'Введите корректный номер телефона' ),
-			array('comment', 'required'),
-		),
-		'actions' => array(
-			array(
+		],
+		'rules' => [
+			['name', 'required'],
+			['telephone', 'regex', 'rule' => '/^[\d\s\+\-\(\)]+$/', 'errorMessage'=> 'Введите корректный номер телефона' ],
+			['comment', 'required'],
+		],
+		'actions' => [
+			[
 				'mail',
 				'subject' => 'Новое письмо с сайта',
 				'from' => 'no-reply@' . $siteName,
 				'fromName' => 'Администратор',
-			),
-		)
-	),
+			],
+            [
+                'telegram',
+				'subject' => 'Новое письмо с сайта',
+                'api_key' => '',
+                'receivers' =>[
+                ]
+            ]
+		]
+	],
 
-	'feedbackFormSimple' => array(
-		'fields' => array(
+	'feedbackFormSimple' => [
+		'fields' => [
 			'name' => 'Ваще имя',
 			'telephone' => 'Ваш телефон',
 			'email' => 'Email',
-		),
-		'rules' => array(
-			array('name', 'required'),
-			array('telephone', 'required'),
-			array('email', 'email'),
-		),
-		'actions' => array(
-			array('counter'), // put this action at the top of the actions
-			array(
+		],
+		'rules' => [
+			['name', 'required'],
+			['telephone', 'required'],
+			['email', 'email'],
+		],
+		'actions' => [
+			['counter'], // put this action at the top of the actions
+			[
 				'mail', 'subject' => 'Новое письмо с сайта (для администратора)',
 				'template' => 'default.tpl', // можно не указывать. Этот шаблон по умолчанию
 				'from' => 'no-reply@' . $siteName,
 				'fromName' => 'Администратор',
 				'to' => $mailTo
-			),
-			array(
+			],
+			[
 				'userMail', 'subject' => 'Ваш заказ успешно обработан',
 				'template' => 'default.tpl', // можно не указывать. Этот шаблон по умолчанию
 				'from' => 'no-reply@' . $siteName,
 				'fromName' => 'Администратор',
-				'to' => array('eval'=> '$this->_form->fieldValue("email")'),
-			),
-		)
-	),
-);
+				'to' => ['eval'=> '$this->_form->fieldValue("email")'],
+			],
+		]
+	],
+];
