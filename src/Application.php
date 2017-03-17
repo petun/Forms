@@ -96,7 +96,7 @@ class Application
 			echo json_encode($result);
 		} else {
 			$this->_statusError(
-				'Ошибка при заполнении формы. Проверьте правильность заполнения всех обязательных полей'
+				$this->_form->errorMessage
 			);
 		}
 	}

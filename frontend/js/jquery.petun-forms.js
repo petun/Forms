@@ -12,6 +12,10 @@ $.fn.ptmForm = function (options) {
         'loadingClass': 'form-result__loading',
         'handler': 'handler.php',
         'onSuccess': function (form) {
+        },
+        'onError': function (form) {
+        },
+        'beforeSubmit': function (form) {
         }
     }, options);
 
@@ -39,6 +43,7 @@ $.fn.ptmForm = function (options) {
                 .removeClass(settings.errorClass)
                 .addClass(settings.loadingClass);
 
+            settings.beforeSubmit(form);
 
             $.ajax({
                 url: settings.handler,
@@ -63,6 +68,8 @@ $.fn.ptmForm = function (options) {
                         }
 
                     } else {
+                        settings.onError(form, r);
+
                         resultDiv.addClass(settings.errorClass);
                         if (r.errors) {
                             // result div
