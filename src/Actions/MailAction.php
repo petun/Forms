@@ -9,6 +9,12 @@ namespace Petun\Forms\Actions;
  * @link http://petun.ru/
  * @copyright 2015, Petr Marochkin
  */
+/**
+ * Class MailAction
+ *
+ * @author  Petr Marochkin <petun911@gmail.com>
+ * @package Petun\Forms\Actions
+ */
 class MailAction extends BaseAction
 {
 
@@ -41,6 +47,9 @@ class MailAction extends BaseAction
 	/*
 	 * @var string - Smarty template name. Located in dir - smarty/templates. eg. default.tpl
 	 */
+	/**
+	 * @var string
+     */
 	public $template = 'default.tpl';
 
 	/**
@@ -48,7 +57,41 @@ class MailAction extends BaseAction
 	 */
 	public $reply;
 
+	/**
+	 * @var \Smarty
+     */
 	protected $_smarty;
+
+
+	/**
+	 * @var boolean
+     */
+	public $useSmtp = false;
+
+	/**
+	 * @var boolean Use or not smtp auth
+	 */
+	public $smtpAuth = false;
+
+	/**
+	 * @var string
+     */
+	public $smtpHost;
+
+	/**
+	 * @var integer
+     */
+	public $smtpPort = 25;
+
+	/**
+	 * @var string
+     */
+	public $smtpPassword;
+
+	/**
+	 * @var string
+     */
+	public $smtpUsername;
 
 
 	/**
@@ -91,6 +134,22 @@ class MailAction extends BaseAction
 
 		// Set PHPMailer to use the sendmail transport
 		//$mail->isSendmail();
+
+		if ($this->useSmtp) {
+			$mail->isSMTP();
+			$mail->SMTPAuth = $this->smtpAuth;
+			$mail->Host = $this->smtpHost;
+			$mail->Port = $this->smtpPort;
+			$mail->Password = $this->smtpPassword;
+			$mail->Username = $this->smtpUsername;
+			$mail->SMTPOptions = [
+				'ssl' => array(
+					'verify_peer' => false,
+					'verify_peer_name' => false,
+					'allow_self_signed' => true
+				)
+			];
+		}
 
 		// from
 		$mail->setFrom($this->from, $this->fromName);

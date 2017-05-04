@@ -112,7 +112,15 @@ $config = [
 				'template' => 'default.tpl', // можно не указывать. Этот шаблон по умолчанию
 				'from' => 'no-reply@' . $siteName,
 				'fromName' => 'Администратор',
-				'to' => $mailTo
+				'to' => $mailTo,
+
+				// use this params to send via stmp
+//				'useSmtp' => true,
+//				'smtpAuth' => true,
+//				'smtpHost' => 'host',
+//				'smtpPort' => 25,
+//				'smtpUsername' => 'user',
+//				'smtpPassword' => 'password',
 			],
 			[
 				'userMail', 'subject' => 'Ваш заказ успешно обработан',
