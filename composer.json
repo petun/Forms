@@ -10,5 +10,8 @@
         "php": ">=5.3.0",
         "phpmailer/phpmailer": "dev-master",
         "smarty/smarty": "~3.1"
+    },
+    "suggest": {
+        "dotzero/amocrm": "^0.3.7"
     }
 }
