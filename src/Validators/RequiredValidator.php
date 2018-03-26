@@ -12,6 +12,7 @@ namespace Petun\Forms\Validators;
 class RequiredValidator extends  BaseValidator {
 
 	public function validateAttribute($attribute, $value) {
+	    $value = trim($value);
 		if (empty($value)) {
 			$this->setError("Поле '%s' обязательно для заполнения");
 			return false;
