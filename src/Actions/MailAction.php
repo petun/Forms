@@ -9,6 +9,9 @@ namespace Petun\Forms\Actions;
  * @link http://petun.ru/
  * @copyright 2015, Petr Marochkin
  */
+
+use PHPMailer\PHPMailer\PHPMailer;
+
 /**
  * Class MailAction
  *
@@ -124,11 +127,10 @@ class MailAction extends BaseAction
 	/**
 	 * @return bool
 	 * @throws \Exception
-	 * @throws \phpmailerException
 	 */
 	function run() {
 		//Create a new PHPMailer instance
-		$mail = new \PHPMailer;
+		$mail = new PHPMailer;
 
 		$mail->CharSet = 'utf-8';
 

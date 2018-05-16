@@ -4,83 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e81306d92180eb16a430f54eefd6bd78",
-    "content-hash": "4ef7fc992bb797767bab235394ba6bdb",
+    "content-hash": "e0658492acf849934116f90868d35de6",
     "packages": [
-        {
-            "name": "dotzero/amocrm",
-            "version": "v0.3.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dotzero/amocrm-php.git",
-                "reference": "129eee5282b4e88d437e70e0fcf7c689bfd6e44f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dotzero/amocrm-php/zipball/129eee5282b4e88d437e70e0fcf7c689bfd6e44f",
-                "reference": "129eee5282b4e88d437e70e0fcf7c689bfd6e44f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.0.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "AmoCRM\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "dotzero",
-                    "email": "mail@dotzero.ru"
-                }
-            ],
-            "description": "Удобный и быстрый клиент для работы с API amoCRM",
-            "keywords": [
-                "amoCRM",
-                "api",
-                "crm"
-            ],
-            "time": "2016-11-26 11:45:25"
-        },
         {
             "name": "phpmailer/phpmailer",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "1193eb9d280f046fb3726c0124ea171f216328fd"
+                "reference": "bbdfa96b95a942ca07dc9e97dd2f2901c17b08d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/1193eb9d280f046fb3726c0124ea171f216328fd",
-                "reference": "1193eb9d280f046fb3726c0124ea171f216328fd",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/bbdfa96b95a942ca07dc9e97dd2f2901c17b08d2",
+                "reference": "bbdfa96b95a942ca07dc9e97dd2f2901c17b08d2",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.0.0"
+                "ext-ctype": "*",
+                "ext-filter": "*",
+                "php": ">=5.5.0"
             },
             "require-dev": {
-                "phpdocumentor/phpdocumentor": "*",
-                "phpunit/phpunit": "4.3.*"
+                "doctrine/annotations": "1.2.*",
+                "friendsofphp/php-cs-fixer": "^2.2",
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/phpunit": "^4.8 || ^5.7",
+                "zendframework/zend-eventmanager": "3.0.*",
+                "zendframework/zend-i18n": "2.7.3",
+                "zendframework/zend-serializer": "2.7.*"
+            },
+            "suggest": {
+                "ext-mbstring": "Needed to send email in multibyte encoding charset",
+                "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
+                "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
+                "psr/log": "For optional PSR-3 debug logging",
+                "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
+                "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
             },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "class.phpmailer.php",
-                    "class.smtp.php",
-                    "class.pop3.php",
-                    "extras/EasyPeasyICS.php",
-                    "extras/ntlm_sasl_client.php"
-                ]
+                "psr-4": {
+                    "PHPMailer\\PHPMailer\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -104,20 +70,20 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2015-07-22 12:18:59"
+            "time": "2018-04-27 08:25:28"
         },
         {
             "name": "smarty/smarty",
-            "version": "v3.1.27",
+            "version": "v3.1.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/smarty-php/smarty.git",
-                "reference": "4537d8aae6c4a26f5439bc3a05d3437d25c2c4d2"
+                "reference": "ac9d4b587e5bf53381e21881820a9830765cb459"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/4537d8aae6c4a26f5439bc3a05d3437d25c2c4d2",
-                "reference": "4537d8aae6c4a26f5439bc3a05d3437d25c2c4d2",
+                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/ac9d4b587e5bf53381e21881820a9830765cb459",
+                "reference": "ac9d4b587e5bf53381e21881820a9830765cb459",
                 "shasum": ""
             },
             "require": {
@@ -130,10 +96,8 @@
                 }
             },
             "autoload": {
-                "classmap": [
-                    "libs/Smarty.class.php",
-                    "libs/SmartyBC.class.php",
-                    "libs/sysplugins/"
+                "files": [
+                    "libs/bootstrap.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -159,7 +123,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-06-18 00:55:59"
+            "time": "2018-04-24T14:53:33+00:00"
         }
     ],
     "packages-dev": [],
