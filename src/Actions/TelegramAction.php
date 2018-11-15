@@ -34,7 +34,7 @@ class TelegramAction extends BaseAction
      */
     public function __construct(\Petun\Forms\BaseForm $form)
     {
-        $this->_form = $form;
+        parent::__construct($form);
 
         // init smarty template engine
         $this->_smarty = new \Smarty();

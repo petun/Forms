@@ -23,13 +23,14 @@ abstract class BaseAction {
 	abstract function run();
 
 
-	/**
-	 * @param BaseForm $form
-	 * @param string $name Название действия
-	 * @param array $params Параметры действия
-	 * @throws \Exception
-	 */
-	public static function createAction(\Petun\Forms\BaseForm $form, $name, $params = array()) {
+    /**
+     * @param BaseForm $form
+     * @param string $name Название действия
+     * @param array $params Параметры действия
+     * @return mixed
+     * @throws \Exception
+     */
+	public static function createAction(BaseForm $form, $name, $params = array()) {
 		$className = !empty($params['class']) ? $params['class'] : "\\Petun\\Forms\\Actions\\".ucfirst($name)."Action";
 
 		if (class_exists($className)) {

@@ -101,7 +101,7 @@ class MailAction extends BaseAction
 	 * @param \Petun\Forms\BaseForm $form
 	 */
 	public function __construct(\Petun\Forms\BaseForm $form) {
-		$this->_form = $form;
+		parent::__construct($form);
 
 		// init smarty template engine
 		$this->_smarty = new \Smarty();
@@ -193,11 +193,7 @@ class MailAction extends BaseAction
 	 * @return mixed|string
 	 */
 	protected function _getTo() {
-		//Set who the message is to be sent to
-		//todo remove eval and add Closure to docs
-		if (is_array($this->to) && array_key_exists('eval', $this->to)) {
-			return $this->evaluateExpression($this->to['eval']);
-		} else if ($this->to instanceof \Closure){
+		if ($this->to instanceof \Closure){
 			return call_user_func($this->to, $this->_form);
 		}
 
@@ -209,12 +205,7 @@ class MailAction extends BaseAction
 	 * @return mixed|string
 	 */
 	protected function _getReply() {
-		//Set who the message is to be sent to
-		//todo remove eval and add Closure to docs
-		//todo copy paste here. Fix it!
-		if (is_array($this->reply) && array_key_exists('eval', $this->reply)) {
-			return $this->evaluateExpression($this->reply['eval']);
-		} else if ($this->reply instanceof \Closure){
+		if ($this->reply instanceof \Closure){
 			return call_user_func($this->reply, $this->_form);
 		}
 
