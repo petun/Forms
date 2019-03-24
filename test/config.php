@@ -14,13 +14,14 @@ $config = [
 			'select-box' => 'select-box',
 			'check-test' => 'test check',
 			'regexText' => 'Regex Text',
-
+            'g-recaptcha-response' => 'Робот',
 		],
 		'rules' => [
 			['name', 'required'],
 			['telephone', 'required'],
 			['email', 'email', 'allowEmpty' => false],
 			['regexText', 'regex', 'rule' => '/\d+/', 'errorMessage' => 'В поле %s должны быть только числа'],
+            ['g-recaptcha-response', 'recaptcha', 'secret' => '6LfrqpkUAAAAAPAWH_Lwtm5bqY4FhWSV_TNupNPR'],
 		],
 		'actions' => [
 			[
